@@ -205,104 +205,108 @@ export const Contact = ({ content }: ContactProps) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="h-full"
           >
-            <form onSubmit={handleSubmit} className="glass-effect p-5 sm:p-8 rounded-xl sm:rounded-2xl space-y-4 sm:space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Ваше имя
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-accent-green focus:outline-none transition-colors"
-                  placeholder="Иван Иванов"
-                  required
-                />
+            <form onSubmit={handleSubmit} className="glass-effect p-5 sm:p-8 rounded-xl sm:rounded-2xl h-full flex flex-col">
+              <div className="flex-1 flex flex-col space-y-4 sm:space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    Ваше имя
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-accent-green focus:outline-none transition-colors"
+                    placeholder="Иван Иванов"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                    Телефон
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-accent-green focus:outline-none transition-colors"
+                    placeholder="+375 (29) 123-45-67"
+                    required
+                  />
+                </div>
+
+                <div className="flex-1 flex flex-col">
+                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                    Сообщение
+                  </label>
+                  <textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full flex-1 min-h-[120px] px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-accent-green focus:outline-none transition-colors resize-none"
+                    placeholder="Опишите вашу задачу..."
+                    required
+                  />
+                </div>
               </div>
 
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                  Телефон
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-accent-green focus:outline-none transition-colors"
-                  placeholder="+375 (29) 123-45-67"
-                  required
-                />
-              </div>
+              <div className="mt-4 sm:mt-6 space-y-4">
+                <motion.button
+                  type="submit"
+                  disabled={isLoading}
+                  whileHover={!isLoading ? { scale: 1.02 } : {}}
+                  whileTap={!isLoading ? { scale: 0.98 } : {}}
+                  className={`w-full py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${
+                    isLoading
+                      ? 'bg-gray-600 cursor-not-allowed'
+                      : 'gradient-bg shadow-accent-green/30 hover:shadow-accent-green/50'
+                  }`}
+                >
+                  {isLoading ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Отправка...
+                    </>
+                  ) : (
+                    <>
+                      <FiSend className="text-lg" />
+                      Отправить заявку
+                    </>
+                  )}
+                </motion.button>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Сообщение
-                </label>
-                <textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-accent-green focus:outline-none transition-colors resize-none"
-                  placeholder="Опишите вашу задачу..."
-                  required
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                disabled={isLoading}
-                whileHover={!isLoading ? { scale: 1.02 } : {}}
-                whileTap={!isLoading ? { scale: 0.98 } : {}}
-                className={`w-full py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${
-                  isLoading
-                    ? 'bg-gray-600 cursor-not-allowed'
-                    : 'gradient-bg shadow-accent-green/30 hover:shadow-accent-green/50'
-                }`}
-              >
-                {isLoading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Отправка...
-                  </>
-                ) : (
-                  <>
-                    <FiSend className="text-lg" />
-                    Отправить заявку
-                  </>
+                {/* Сообщение об успехе */}
+                {submitStatus === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 text-green-400 bg-green-400/10 p-3 rounded-lg"
+                  >
+                    <FiCheck className="text-lg flex-shrink-0" />
+                    <span>Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.</span>
+                  </motion.div>
                 )}
-              </motion.button>
 
-              {/* Сообщение об успехе */}
-              {submitStatus === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 text-green-400 bg-green-400/10 p-3 rounded-lg"
-                >
-                  <FiCheck className="text-lg flex-shrink-0" />
-                  <span>Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.</span>
-                </motion.div>
-              )}
+                {/* Сообщение об ошибке */}
+                {submitStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 text-red-400 bg-red-400/10 p-3 rounded-lg"
+                  >
+                    <FiAlertCircle className="text-lg flex-shrink-0" />
+                    <span>{errorMessage}</span>
+                  </motion.div>
+                )}
 
-              {/* Сообщение об ошибке */}
-              {submitStatus === 'error' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 text-red-400 bg-red-400/10 p-3 rounded-lg"
-                >
-                  <FiAlertCircle className="text-lg flex-shrink-0" />
-                  <span>{errorMessage}</span>
-                </motion.div>
-              )}
-
-              <p className="text-sm text-gray-400 text-center">
-                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
-              </p>
+                <p className="text-sm text-gray-400 text-center">
+                  Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                </p>
+              </div>
             </form>
           </motion.div>
         </div>

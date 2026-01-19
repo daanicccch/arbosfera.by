@@ -40,6 +40,14 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
+  /* Glass effect for navbar - dark variant */
+  .glass-effect-dark {
+    background-color: rgba(15, 42, 31, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
   /* Gradient utilities */
   .gradient-text {
     background: linear-gradient(to right, #2d8659, #3aa76d);
