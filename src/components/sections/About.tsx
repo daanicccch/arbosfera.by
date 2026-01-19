@@ -32,7 +32,7 @@ export const About = ({ content }: AboutProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
           >
             {content?.title?.split(' ').slice(0, -2).join(' ') || 'Почему выбирают'}{' '}
             <span className="gradient-text">{content?.title?.split(' ').slice(-2).join(' ') || 'нас'}</span>
@@ -42,7 +42,7 @@ export const About = ({ content }: AboutProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-2"
           >
             {content?.subtitle || 'Мы предоставляем профессиональные услуги высочайшего качества'}
           </motion.p>
@@ -54,7 +54,7 @@ export const About = ({ content }: AboutProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mb-12 sm:mb-20"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -64,18 +64,18 @@ export const About = ({ content }: AboutProps) => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="glass-effect p-8 rounded-2xl text-center cursor-pointer"
+              className="glass-effect p-4 sm:p-8 rounded-xl sm:rounded-2xl text-center cursor-pointer"
             >
               <motion.div
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1, type: 'spring' }}
-                className="text-4xl md:text-5xl font-bold gradient-text mb-2"
+                className="text-2xl sm:text-4xl md:text-5xl font-bold gradient-text mb-1 sm:mb-2"
               >
                 {stat.value}
               </motion.div>
-              <div className="text-sm text-gray-400">{stat.label}</div>
+              <div className="text-xs sm:text-sm text-gray-400">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -93,23 +93,23 @@ export const About = ({ content }: AboutProps) => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="glass-effect p-8 rounded-2xl h-full hover-lift cursor-pointer">
-                  <div className="flex items-start gap-4">
+                <div className="glass-effect p-5 sm:p-8 rounded-xl sm:rounded-2xl h-full hover-lift cursor-pointer">
+                  <div className="flex items-start gap-3 sm:gap-4">
                     {/* Icon */}
                     <motion.div
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.6 }}
-                      className="flex-shrink-0 w-14 h-14 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-accent-green/30 group-hover:shadow-accent-green/50 transition-shadow"
+                      className="flex-shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-accent-green/30 group-hover:shadow-accent-green/50 transition-shadow"
                     >
-                      <Icon className="text-2xl" />
+                      <Icon className="text-lg sm:text-2xl" />
                     </motion.div>
 
                     {/* Content */}
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-accent-green-light transition-colors">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base sm:text-xl font-bold mb-2 sm:mb-3 group-hover:text-accent-green-light transition-colors">
                         {principle.title}
                       </h3>
-                      <p className="text-gray-400 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                         {principle.description}
                       </p>
                     </div>
@@ -126,13 +126,13 @@ export const About = ({ content }: AboutProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 text-center"
+          className="mt-10 sm:mt-16 text-center"
         >
-          <div className="glass-effect p-8 rounded-2xl max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">
+          <div className="glass-effect p-5 sm:p-8 rounded-xl sm:rounded-2xl max-w-4xl mx-auto">
+            <h3 className="text-lg sm:text-2xl font-bold mb-3 sm:mb-4">
               Работаем с <span className="gradient-text">любыми объектами</span>
             </h3>
-            <p className="text-gray-400 leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4 sm:mb-6">
               Частные дома, коттеджные поселки, парки, скверы, производственные территории,
               городские улицы. Выполняем работы любой сложности с применением современного оборудования.
             </p>

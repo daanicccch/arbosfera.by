@@ -121,8 +121,28 @@ body {
   background-color: #0f2a1f;
   color: white;
   font-family: Inter, system-ui, sans-serif;
+  overflow-x: hidden;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Prevent text overflow on mobile */
+h1, h2, h3, h4, h5, h6, p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Ensure sections don't overflow */
+section {
+  overflow-x: hidden;
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 640px) {
+  button, a {
+    min-height: 44px;
+  }
 }

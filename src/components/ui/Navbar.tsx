@@ -45,18 +45,21 @@ export const Navbar = ({ phone = '+375 (29) 123-45-67' }: NavbarProps) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center cursor-pointer"
+            className="flex items-center cursor-pointer gap-2"
             onClick={() => scrollToSection('#hero')}
           >
-            <div className="text-2xl font-bold">
-              <span className="gradient-text">АрбоПрофи</span>
-            </div>
+            <img
+              src="/ARBO PNG.png"
+              alt="АрбоСфера"
+              className="h-10 sm:h-12 w-auto"
+            />
+            <span className="text-lg sm:text-xl font-bold gradient-text">АрбоСфера</span>
           </motion.div>
 
           {/* Desktop Menu */}

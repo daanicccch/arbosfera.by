@@ -34,7 +34,7 @@ export const Hero = ({ content }: HeroProps) => {
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/90 via-primary-dark/80 to-primary-dark" />
+        <div className="absolute inset-0 bg-linear-to-b from-primary-dark/90 via-primary-dark/80 to-primary-dark" />
       </div>
 
       {/* Animated Floating Elements */}
@@ -84,8 +84,8 @@ export const Hero = ({ content }: HeroProps) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="inline-block mb-6"
           >
-            <div className="glass-effect px-6 py-2 rounded-full">
-              <span className="text-accent-green-light font-medium">
+            <div className="glass-effect px-4 sm:px-6 py-2 rounded-full">
+              <span className="text-accent-green-light font-medium text-sm sm:text-base">
                 {content?.subtitle || 'Обрезка, удаление и лечение деревьев'}
               </span>
             </div>
@@ -96,7 +96,7 @@ export const Hero = ({ content }: HeroProps) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight"
           >
             {content?.title?.split(' ').map((word, index) => (
               <motion.span
@@ -122,7 +122,7 @@ export const Hero = ({ content }: HeroProps) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto px-2"
           >
             {content?.description || 'Более 10 лет опыта в арбористике. Безопасно, быстро, качественно.'}
           </motion.p>
@@ -136,17 +136,17 @@ export const Hero = ({ content }: HeroProps) => {
           >
             <a
               href={`tel:${content?.phone?.replace(/\D/g, '') || ''}`}
-              className="gradient-bg px-8 py-4 rounded-xl text-lg font-semibold shadow-lg shadow-accent-green/30 hover:shadow-accent-green/50 transition-all duration-300 flex items-center gap-3 group"
+              className="gradient-bg px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold shadow-lg shadow-accent-green/30 hover:shadow-accent-green/50 transition-all duration-300 flex items-center gap-2 sm:gap-3 group w-full sm:w-auto justify-center"
             >
-              <FiPhone className="text-xl group-hover:rotate-12 transition-transform" />
-              {content?.cta || 'Получить консультацию'}
+              <FiPhone className="text-lg sm:text-xl group-hover:rotate-12 transition-transform" />
+              <span className="whitespace-nowrap">{content?.cta || 'Получить консультацию'}</span>
             </a>
             <button
               onClick={scrollToServices}
-              className="glass-effect px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-3"
+              className="glass-effect px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center"
             >
               Наши услуги
-              <FiArrowDown className="text-xl" />
+              <FiArrowDown className="text-lg sm:text-xl" />
             </button>
           </motion.div>
 
@@ -155,7 +155,7 @@ export const Hero = ({ content }: HeroProps) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+            className="mt-12 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-8 max-w-4xl mx-auto"
           >
             {[
               { value: '10+', label: 'лет опыта' },
@@ -168,12 +168,12 @@ export const Hero = ({ content }: HeroProps) => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 1.1 + index * 0.1 }}
-                className="glass-effect p-6 rounded-2xl hover-lift"
+                className="glass-effect p-3 sm:p-6 rounded-xl sm:rounded-2xl hover-lift"
               >
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 sm:mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-gray-400">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

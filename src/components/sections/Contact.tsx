@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import { FiPhone, FiMail, FiMapPin, FiClock, FiSend } from 'react-icons/fi';
+import { FiPhone, FiMail, FiMapPin, FiClock, FiSend, FiCheck, FiAlertCircle } from 'react-icons/fi';
 import { FaTelegram, FaViber, FaWhatsapp } from 'react-icons/fa';
 import { useState } from 'react';
+
+const WORKER_URL = 'https://throbbing-moon-c354.typosharu.workers.dev';
 
 interface ContactProps {
   content?: {
@@ -25,11 +27,38 @@ export const Contact = ({ content }: ContactProps) => {
     phone: '',
     message: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Здесь можно добавить логику отправки формы
-    console.log('Form submitted:', formData);
+    setIsLoading(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', phone: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(result.error || 'Ошибка отправки');
+      }
+    } catch {
+      setSubmitStatus('error');
+      setErrorMessage('Не удалось отправить заявку. Попробуйте позже.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -48,7 +77,7 @@ export const Contact = ({ content }: ContactProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
           >
             {content?.title?.split(' ').slice(0, -2).join(' ') || 'Связаться с'}{' '}
             <span className="gradient-text">{content?.title?.split(' ').slice(-2).join(' ') || 'нами'}</span>
@@ -58,13 +87,13 @@ export const Contact = ({ content }: ContactProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-2"
           >
             {content?.subtitle || 'Ответим на все ваши вопросы и рассчитаем стоимость работ'}
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -109,23 +138,23 @@ export const Contact = ({ content }: ContactProps) => {
                     transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                     whileHover={{ x: 5 }}
                   >
-                    <div className="glass-effect p-6 rounded-xl flex items-start gap-4 group cursor-pointer hover-lift">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-accent-green/30 group-hover:shadow-accent-green/50 transition-shadow">
-                        <Icon className="text-xl" />
+                    <div className="glass-effect p-4 sm:p-6 rounded-xl flex items-start gap-3 sm:gap-4 group cursor-pointer hover-lift">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-accent-green/30 group-hover:shadow-accent-green/50 transition-shadow">
+                        <Icon className="text-lg sm:text-xl" />
                       </div>
-                      <div>
-                        <h3 className="font-semibold mb-1 text-accent-green-light">
+                      <div className="min-w-0 flex-1">
+                        <h3 className="font-semibold mb-1 text-accent-green-light text-sm sm:text-base">
                           {item.title}
                         </h3>
                         {item.href ? (
                           <a
                             href={item.href}
-                            className="text-gray-300 hover:text-white transition-colors"
+                            className="text-gray-300 hover:text-white transition-colors text-sm sm:text-base break-words"
                           >
                             {item.value}
                           </a>
                         ) : (
-                          <p className="text-gray-300">{item.value}</p>
+                          <p className="text-gray-300 text-sm sm:text-base break-words">{item.value}</p>
                         )}
                       </div>
                     </div>
@@ -140,12 +169,12 @@ export const Contact = ({ content }: ContactProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="glass-effect p-6 rounded-xl"
+              className="glass-effect p-4 sm:p-6 rounded-xl"
             >
-              <h3 className="font-semibold mb-4 text-accent-green-light">
+              <h3 className="font-semibold mb-3 sm:mb-4 text-accent-green-light text-sm sm:text-base">
                 Свяжитесь с нами в мессенджерах
               </h3>
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4">
                 {[
                   { icon: FaTelegram, href: content?.socials?.telegram || '#', color: 'hover:bg-[#0088cc]' },
                   { icon: FaViber, href: content?.socials?.viber || '#', color: 'hover:bg-[#665CAC]' },
@@ -160,9 +189,9 @@ export const Contact = ({ content }: ContactProps) => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -5 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`w-14 h-14 rounded-xl bg-white/10 ${social.color} transition-all duration-300 flex items-center justify-center shadow-lg`}
+                      className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-white/10 ${social.color} transition-all duration-300 flex items-center justify-center shadow-lg`}
                     >
-                      <Icon className="text-2xl" />
+                      <Icon className="text-xl sm:text-2xl" />
                     </motion.a>
                   );
                 })}
@@ -177,7 +206,7 @@ export const Contact = ({ content }: ContactProps) => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="glass-effect p-8 rounded-2xl space-y-6">
+            <form onSubmit={handleSubmit} className="glass-effect p-5 sm:p-8 rounded-xl sm:rounded-2xl space-y-4 sm:space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Ваше имя
@@ -225,13 +254,51 @@ export const Contact = ({ content }: ContactProps) => {
 
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full gradient-bg py-4 rounded-xl font-semibold shadow-lg shadow-accent-green/30 hover:shadow-accent-green/50 transition-all duration-300 flex items-center justify-center gap-3"
+                disabled={isLoading}
+                whileHover={!isLoading ? { scale: 1.02 } : {}}
+                whileTap={!isLoading ? { scale: 0.98 } : {}}
+                className={`w-full py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${
+                  isLoading
+                    ? 'bg-gray-600 cursor-not-allowed'
+                    : 'gradient-bg shadow-accent-green/30 hover:shadow-accent-green/50'
+                }`}
               >
-                <FiSend className="text-lg" />
-                Отправить заявку
+                {isLoading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Отправка...
+                  </>
+                ) : (
+                  <>
+                    <FiSend className="text-lg" />
+                    Отправить заявку
+                  </>
+                )}
               </motion.button>
+
+              {/* Сообщение об успехе */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 text-green-400 bg-green-400/10 p-3 rounded-lg"
+                >
+                  <FiCheck className="text-lg flex-shrink-0" />
+                  <span>Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.</span>
+                </motion.div>
+              )}
+
+              {/* Сообщение об ошибке */}
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 text-red-400 bg-red-400/10 p-3 rounded-lg"
+                >
+                  <FiAlertCircle className="text-lg flex-shrink-0" />
+                  <span>{errorMessage}</span>
+                </motion.div>
+              )}
 
               <p className="text-sm text-gray-400 text-center">
                 Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности

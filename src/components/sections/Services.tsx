@@ -47,7 +47,7 @@ export const Services = ({ content }: ServicesProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
           >
             {content?.title || 'Наши'} <span className="gradient-text">{content?.title ? '' : 'услуги'}</span>
           </motion.h2>
@@ -56,7 +56,7 @@ export const Services = ({ content }: ServicesProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-2"
           >
             {content?.subtitle || 'Полный спектр работ по уходу за деревьями'}
           </motion.p>
@@ -73,25 +73,25 @@ export const Services = ({ content }: ServicesProps) => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div className="glass-effect p-8 rounded-2xl h-full hover-lift cursor-pointer">
+              <div className="glass-effect p-5 sm:p-8 rounded-xl sm:rounded-2xl h-full hover-lift cursor-pointer">
                 {/* Icon */}
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
-                  className="w-16 h-16 rounded-xl gradient-bg flex items-center justify-center mb-6 shadow-lg shadow-accent-green/30 group-hover:shadow-accent-green/50 transition-shadow"
+                  className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl gradient-bg flex items-center justify-center mb-4 sm:mb-6 shadow-lg shadow-accent-green/30 group-hover:shadow-accent-green/50 transition-shadow"
                 >
-                  {iconMap[service.icon] || <FiScissors className="text-4xl" />}
+                  {iconMap[service.icon] || <FiScissors className="text-3xl sm:text-4xl" />}
                 </motion.div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-accent-green-light transition-colors">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 group-hover:text-accent-green-light transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
+                <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6 leading-relaxed">{service.description}</p>
 
                 {/* Price */}
-                <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                  <span className="text-accent-green-light font-semibold text-lg">
+                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-white/10">
+                  <span className="text-accent-green-light font-semibold text-base sm:text-lg">
                     {service.price}
                   </span>
                   <motion.button
