@@ -137,8 +137,8 @@
         "id": 6,
         "title": "Работа в процессе",
         "description": "Демонстрация методов работы",
-        "src": "/IMG_0896.mp4",
-        "type": "video"
+        "src": "/photo_2026-01-20_14-14-53.jpg",
+        "type": "image"
       },
       {
         "id": 7,
@@ -172,8 +172,9 @@
     "workingHours": "Пн-Вс: 8:00 - 18:00",
     "socials": {
       "telegram": "https://t.me/arbosferaby",
-      "viber": "viber://chat?number=+375291108710",
-      "whatsapp": "https://wa.me/375296922222"
+      "viber": "https://viber.click/375291108710",
+      "whatsapp": "https://wa.me/375296922222",
+      "instagram": "https://www.instagram.com/arbosfera"
     }
   },
   "footer": {

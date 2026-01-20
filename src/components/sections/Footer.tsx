@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FiPhone, FiMail, FiMapPin, FiClock } from 'react-icons/fi';
-import { FaTelegram, FaViber, FaWhatsapp } from 'react-icons/fa';
+import { FaTelegram, FaViber, FaWhatsapp, FaInstagram } from 'react-icons/fa';
 
 interface FooterProps {
   content?: {
@@ -17,6 +17,7 @@ interface FooterProps {
       telegram: string;
       viber: string;
       whatsapp: string;
+      instagram: string;
     };
   };
 }
@@ -150,6 +151,14 @@ export const Footer = ({ content, contact }: FooterProps) => {
                 className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-white/10 hover:bg-accent-green transition-colors flex items-center justify-center"
               >
                 <FaWhatsapp className="text-xl sm:text-2xl" />
+              </a>
+              <a
+                href={contact?.socials?.instagram || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-white/10 hover:bg-accent-green transition-colors flex items-center justify-center"
+              >
+                <FaInstagram className="text-xl sm:text-2xl" />
               </a>
             </div>
           </motion.div>
