@@ -64,7 +64,7 @@ export const About = ({ content }: AboutProps) => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="glass-effect p-4 sm:p-8 rounded-xl sm:rounded-2xl text-center cursor-pointer"
+              className="glass-effect p-4 sm:p-8 rounded-xl sm:rounded-2xl text-center cursor-pointer flex flex-col items-center justify-center"
             >
               <motion.div
                 initial={{ scale: 0 }}

@@ -57,7 +57,7 @@ export const Navbar = ({ phone = '+375 (29) 123-45-67' }: NavbarProps) => {
             <img
               src="/ARBO PNG.png"
               alt="АрбоСфера"
-              className="h-10 sm:h-12 w-auto"
+              className="h-14 sm:h-16 md:h-18 w-auto"
             />
             <span className="text-lg sm:text-xl font-bold gradient-text">АрбоСфера</span>
           </motion.div>

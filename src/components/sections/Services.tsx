@@ -94,13 +94,14 @@ export const Services = ({ content }: ServicesProps) => {
                   <span className="text-accent-green-light font-semibold text-base sm:text-lg">
                     {service.price}
                   </span>
-                  <motion.button
+                  <motion.a
+                    href="#contact"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="text-sm font-medium text-white hover:text-accent-green-light transition-colors"
+                    className="text-sm font-medium text-white hover:text-accent-green-light transition-colors cursor-pointer"
                   >
                     Подробнее →
-                  </motion.button>
+                  </motion.a>
                 </div>
               </div>
             </motion.div>

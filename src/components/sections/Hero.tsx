@@ -9,9 +9,16 @@ interface HeroProps {
     cta: string;
     phone: string;
   };
+  stats?: Array<{ value: string; label: string }>;
 }
 
-export const Hero = ({ content }: HeroProps) => {
+export const Hero = ({ content, stats }: HeroProps) => {
+  const defaultStats = [
+    { value: '9+', label: 'лет опыта' },
+    { value: '1500+', label: 'проектов' },
+    { value: '20+', label: 'специалистов' },
+    { value: '20+', label: 'ед. техники' },
+  ];
   const scrollToServices = () => {
     const element = document.querySelector('#services');
     if (element) {
@@ -28,8 +35,7 @@ export const Hero = ({ content }: HeroProps) => {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=2000&q=80)',
+          backgroundImage: 'url(/home/home.JPG)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -157,18 +163,13 @@ export const Hero = ({ content }: HeroProps) => {
             transition={{ duration: 0.8, delay: 1 }}
             className="mt-12 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-8 max-w-4xl mx-auto"
           >
-            {[
-              { value: '10+', label: 'лет опыта' },
-              { value: '1500+', label: 'проектов' },
-              { value: '30+', label: 'специалистов' },
-              { value: '20+', label: 'ед. техники' },
-            ].map((stat, index) => (
+            {(stats || defaultStats).map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 1.1 + index * 0.1 }}
-                className="glass-effect p-3 sm:p-6 rounded-xl sm:rounded-2xl hover-lift"
+                className="glass-effect p-3 sm:p-6 rounded-xl sm:rounded-2xl hover-lift flex flex-col items-center justify-center"
               >
                 <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 sm:mb-2">
                   {stat.value}

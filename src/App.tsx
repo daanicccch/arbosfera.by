@@ -35,7 +35,7 @@ function App() {
     <div className="min-h-screen bg-primary-dark text-white font-sans antialiased">
       <Navbar phone={content?.hero.phone} />
       <main>
-        <Hero content={content?.hero} />
+        <Hero content={content?.hero} stats={content?.about.stats} />
         <Services content={content?.services} />
         <About content={content?.about} />
         <Portfolio content={content?.portfolio} />
