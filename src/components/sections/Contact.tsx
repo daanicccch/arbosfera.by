@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FiPhone, FiMail, FiMapPin, FiClock, FiSend, FiCheck, FiAlertCircle } from 'react-icons/fi';
-import { FaTelegram, FaViber, FaWhatsapp } from 'react-icons/fa';
+import { FaTelegram, FaViber, FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { useState } from 'react';
 
 const WORKER_URL = 'https://throbbing-moon-c354.typosharu.workers.dev';
@@ -17,6 +17,7 @@ interface ContactProps {
       telegram: string;
       viber: string;
       whatsapp: string;
+      instagram: string;
     };
   };
 }
@@ -179,6 +180,7 @@ export const Contact = ({ content }: ContactProps) => {
                   { icon: FaTelegram, href: content?.socials?.telegram || '#', color: 'hover:bg-[#0088cc]' },
                   { icon: FaViber, href: content?.socials?.viber || '#', color: 'hover:bg-[#665CAC]' },
                   { icon: FaWhatsapp, href: content?.socials?.whatsapp || '#', color: 'hover:bg-[#25D366]' },
+                  { icon: FaInstagram, href: content?.socials?.instagram || '#', color: 'hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#FCAF45]' },
                 ].map((social, index) => {
                   const Icon = social.icon;
                   return (
