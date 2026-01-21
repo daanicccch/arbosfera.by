@@ -63,13 +63,19 @@ export const Footer = ({ content, contact }: FooterProps) => {
           >
             <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-accent-green-light">Навигация</h4>
             <ul className="space-y-1 sm:space-y-2">
-              {['Главная', 'Услуги', 'О нас', 'Портфолио', 'Контакты'].map((item, index) => (
+              {[
+                { label: 'Главная', href: '#hero' },
+                { label: 'Услуги', href: '#services' },
+                { label: 'О нас', href: '#about' },
+                { label: 'Портфолио', href: '#portfolio' },
+                { label: 'Контакты', href: '#contact' },
+              ].map((item, index) => (
                 <li key={index}>
                   <button
-                    onClick={() => scrollToSection(`#${item.toLowerCase().replace(' ', '-')}`)}
+                    onClick={() => scrollToSection(item.href)}
                     className="text-sm sm:text-base text-gray-400 hover:text-accent-green-light transition-colors"
                   >
-                    {item}
+                    {item.label}
                   </button>
                 </li>
               ))}
